@@ -1,0 +1,17 @@
+RewriteEngine on
+RewriteCond %{HTTP:VIA}                 !^$ [OR]
+RewriteCond %{HTTP:FORWARDED}           !^$ [OR]
+RewriteCond %{HTTP:USERAGENT_VIA}       !^$ [OR]
+RewriteCond %{HTTP:X_FORWARDED_FOR}     !^$ [OR]
+RewriteCond %{HTTP:PROXY_CONNECTION}    !^$ [OR]
+RewriteCond %{HTTP:XPROXY_CONNECTION}   !^$ [OR]
+RewriteCond %{HTTP:HTTP_PC_REMOTE_ADDR} !^$ [OR]
+RewriteCond %{HTTP:HTTP_CLIENT_IP}      !^$
+RewriteRule ^(.*)$ - [F]
+
+# Error pages redirect
+ErrorDocument 400 /404.html
+ErrorDocument 401 /404.html
+ErrorDocument 403 /404.html
+ErrorDocument 404 /404.html
+ErrorDocument 500 /404.html

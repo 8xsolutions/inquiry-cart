@@ -1,0 +1,40 @@
+# Protect the htaccess file
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+# Protect the security file
+<Files inc/security.php>
+Order Allow,Deny
+Deny from all
+</Files>
+RewriteEngine on
+#RewriteBase /
+#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+#RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+
+# Error pages redirect
+ErrorDocument 400 /404.php
+ErrorDocument 401 /404.php
+ErrorDocument 403 /404.php
+ErrorDocument 404 /404.php
+ErrorDocument 500 /404.php
+
+
+RewriteRule ^search/$ search.php [L]
+RewriteRule ^custom-product/$ custom-product.php [L]
+RewriteRule ^contact/$ contact.php [L]
+RewriteRule ^factory/$ factory.php [L]
+RewriteRule ^about/$ about.php [L]
+RewriteRule ^cart/$ cart.php [L]
+RewriteRule ^checkout/$ checkout.php [L]
+RewriteRule ^add_to_cart/([0-9]+)/?$ add_to_cart.php?prd_id=$1 [NC,L]
+RewriteRule ^detail/([A-Za-z0-9-]+)/?$ detail.php?uniid=$1 [NC,L]
+RewriteRule ^model/([A-Za-z0-9-]+)/?$ model.php?uniid=$1 [NC,L]
+RewriteRule ^product-view/([A-Za-z0-9-]+)?$ product-view.php?prdid=$1 [NC,L]
+RewriteRule ^products/$ products.php [L]
+RewriteRule ^products/([A-Za-z0-9-]+)/?$ products.php?id=$1 [NC,L]
+RewriteRule ^products/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ products.php?id=$1&page=$2 [NC,L]
+RewriteRule ^page/$ page.php [L]
+RewriteRule ^page/([A-Za-z0-9-]+)/?$ page.php?id=$1 [NC,L]
